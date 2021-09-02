@@ -13,7 +13,7 @@ try
 } 
 catch (error)
 {
-    core.setFailed(error.message);
+    core.setFailed(error);
 }
 
 function readTextFile(file)
@@ -83,7 +83,7 @@ function ensureVersionIsValid(versionNumber) {
     }
     catch (error)
     {
-        console.log(error.message);
+        console.log(error);
         throw(error);
     }
 }
