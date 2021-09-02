@@ -39,7 +39,7 @@ function getVersion(fileText)
         let commentRegex = /\/{2}/;
         let lines = fileText.toString().split('\n');
         
-        for(line in lines)
+        for(var line in lines)
         {
             let m;
             if ((m = commentRegex.exec(line)) !== null) 
