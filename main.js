@@ -1,12 +1,14 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs')
+var semver = require('semver');
 
 try
 {
     let filepath = core.getInput('file-path');
     let fileText = readTextFile(filepath);
     let versionString = getVersion(fileText);
+    ensureVersionIsValid(versionString);
     core.setOutput("version", versionString);
 } 
 catch (error)
@@ -52,9 +54,9 @@ function getVersion(fileText)
             }
             else if ((m = versionLineRegex.exec(line)) !== null)
             {
-                let versionString = getVersionStringRegex.exec(line);
+                let versionString = getVersionStringRegex.exec(line).toString();
                 console.log(`Found a version string '${versionString}' on line '${line}'`);
-                return versionString.toString();
+                return versionString;
             }
             else
             {
@@ -66,6 +68,22 @@ function getVersion(fileText)
     catch (error)
     {
         console.log('failed to read version string');
+        throw(error);
+    }
+}
+
+function ensureVersionIsValid(versionNumber) {
+    try
+    {
+        let validatedVersion = semver.valid(versionNumber);
+        if (validatedVersion === null)
+        {
+            throw `'${versionNumber}' is not a valid version number`;
+        }
+    }
+    catch (error)
+    {
+        console.log(error.message);
         throw(error);
     }
 }
