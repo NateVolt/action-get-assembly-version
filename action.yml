@@ -1,0 +1,12 @@
+name: 'Get Assembly Version'
+description: 'Gets the text inside the AssemblyVersion attribute in an AssemblyInfo.cs file.'
+inputs:
+  file-path:
+    description: 'Absolute file path of the aseembly info file.'
+    required: true
+outputs:
+  version:
+    description: 'The version string found.'
+runs:
+  using: 'node12'
+  main: 'main.js'
