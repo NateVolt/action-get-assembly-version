@@ -41,8 +41,9 @@ function getVersion(fileText)
         console.log('printing lines');
         console.log(lines);
         
-        for(var line in lines)
+        for(var i = 0; i < lines.length; i++)
         {
+            let line = lines[i];
             let m;
             if ((m = commentRegex.exec(line)) !== null) 
             {
