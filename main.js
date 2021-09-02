@@ -18,8 +18,9 @@ function readTextFile(file)
 {
     try
     {
-        console.log(`trying to read in file ${file}`)
+        console.log(`trying to read in file ${file}`);
         const data = fs.readFileSync(file, 'utf8');
+        console.log(data);
         return data;
     } 
     catch (error)
@@ -44,14 +45,18 @@ function getVersion(fileText)
             if ((m = commentRegex.exec(line)) !== null) 
             {
                 // this is a comment line in the file. We should do nothing.
+                console.log(`'${line}' is a comment line`);
             }
             else if ((m = versionLineRegex.exec(line)) !== null)
             {
-                return getVersionStringRegex.exec(line);
+                let versionString = getVersionStringRegex.exec(line);
+                console.log(`Found a version string '${versionString}' on line '${line}'`);
+                return versionString;
             }
             else
             {
                 // this is not a line we care about.
+                console.log(`'${line}' is not a comment or a line we care about`);
             }
         }
     }
