@@ -54,7 +54,7 @@ function getVersion(fileText)
             {
                 let versionString = getVersionStringRegex.exec(line);
                 console.log(`Found a version string '${versionString}' on line '${line}'`);
-                return versionString;
+                return versionString.toString();
             }
             else
             {
