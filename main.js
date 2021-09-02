@@ -75,10 +75,22 @@ function getVersion(fileText)
 function ensureVersionIsValid(versionNumber) {
     try
     {
-        let validatedVersion = semver.valid(versionNumber);
-        if (validatedVersion === null)
+        let splitVer = versionNumber.split('.');
+        if (splitVer.length != 4)
         {
-            throw `'${versionNumber}' is not a valid version number`;
+            throw `Version '${versionNumber}' should have 4 entries, but ${splitVer.length} were found.`;
+        }
+        for (var i = 0; i  < 4; i++)
+        {
+            if (isNaN(splitVer[i]))
+            {
+                throw `Version '${versionNumber}' index ${i} is not valid.`;
+            }
+        }
+        var numOfSeperators = (versionNumber.match(/./g) || []).length;
+        if (numOfSeperators != 3)
+        {
+            throw `Version '${versionNumber}' has too many '.' seperators.`;
         }
     }
     catch (error)
