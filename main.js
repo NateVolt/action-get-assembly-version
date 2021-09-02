@@ -86,7 +86,7 @@ function ensureVersionIsValid(versionNumber) {
                 throw `Version '${versionNumber}' index ${i} is not valid.`;
             }
         }
-        var numOfSeperators = (versionNumber.match(/./g) || []).length;
+        var numOfSeperators = (versionNumber.match(/\./g) || []).length;
         if (numOfSeperators != 3)
         {
             throw `Version '${versionNumber}' has too many '.' seperators.`;
