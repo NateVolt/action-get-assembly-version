@@ -18,13 +18,13 @@ function readTextFile(file)
 {
     try
     {
-        console.log('trying to read in file ${file}')
+        console.log(`trying to read in file ${file}`)
         const data = fs.readFileSync(file, 'utf8');
         return data;
     } 
     catch (error)
     {
-        console.log('failed to read in file ${file}');
+        console.log(`failed to read in file ${file}`);
         throw(error);
     }
 }
