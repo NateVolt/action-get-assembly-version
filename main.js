@@ -37,7 +37,9 @@ function getVersion(fileText)
         let versionLineRegex = /(assembly: AssemblyVersion)/;
         let getVersionStringRegex = /(?<=")[^"]+(?=")/;
         let commentRegex = /\/{2}/;
-        let lines = fileText.toString().split('\n');
+        let lines = fileText.split(/\r?\n/);
+        console.log('printing lines');
+        console.log(lines);
         
         for(var line in lines)
         {
